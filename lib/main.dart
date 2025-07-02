@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'first_page.dart';
+import 'package:weather_app/views/home_view.dart';
+import 'widgets/no_weather_body.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: FirstPage(),
+      home: HomeView(),
     );
   }
 }
