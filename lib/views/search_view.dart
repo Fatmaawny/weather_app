@@ -25,11 +25,8 @@ class SearchView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: TextField(
             onSubmitted: (value) async {
-              weatherModel = await WeatherService(
-                Dio(),
-              ).getWeatherService(cityName: value);
-              Navigator.pop(context);
-              log(weatherModel!.statues);
+
+
             },
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(
