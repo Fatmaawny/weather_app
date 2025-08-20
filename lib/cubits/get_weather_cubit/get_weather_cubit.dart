@@ -6,7 +6,7 @@ import '../../views/search_view.dart';
 import 'get_weather_states.dart';
 
 class GetWeatherCubit extends Cubit<WeatherStates> {
-  GetWeatherCubit(super.NoWeatherState);
+  GetWeatherCubit() : super(NoWeatherState());
 
   getWeather(String cityName) async {
     try {
