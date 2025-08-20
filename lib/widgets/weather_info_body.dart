@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../cubits/get_weather_cubit/get_weather_cubit.dart';
 class WeatherInfoBody extends StatelessWidget {
   const WeatherInfoBody({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    int maxtemp = 34;
-    int mintemp = 17;
+  Widget build(BuildContext context)
+
+  {
+    var weatherModel = BlocProvider.of<GetWeatherCubit>(context).weatherModel;
+    var maxtemp = weatherModel.maxtemp.round();
+    var mintemp = weatherModel.mintemp.round();
     return  Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("El Minya",
+          Text(weatherModel.cityname,
           style: TextStyle(
             fontSize: 35,
             fontWeight: FontWeight.bold
           ),
           ),
           SizedBox(height: 10),
-          Text("Updated at 1:10 AM",
+          Text("Updated at "+weatherModel.lastupdatedtime.hour.toString()+":"+weatherModel.lastupdatedtime.minute.toString(),
             style: TextStyle(
                 fontSize: 20,
             ),
@@ -28,8 +34,8 @@ class WeatherInfoBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-             Image.asset("assets/images/clear.png"),
-              Text("17",
+              Image.network("https:"+weatherModel.image),
+              Text(weatherModel.temp.round().toString(),
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold
@@ -44,7 +50,7 @@ class WeatherInfoBody extends StatelessWidget {
             ],
           ),
           SizedBox(height: 30),
-          Text("Sunny",
+          Text(weatherModel.statues,
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold
@@ -54,4 +60,7 @@ class WeatherInfoBody extends StatelessWidget {
       ),
     );
   }
+}
+DateTime StringToDate (String value){
+  return DateTime.parse(value);
 }
