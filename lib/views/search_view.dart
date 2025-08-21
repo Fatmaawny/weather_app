@@ -15,7 +15,6 @@ class SearchView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amberAccent,
         toolbarHeight: 75,
         title: Text(
           'Search a city',
@@ -29,7 +28,7 @@ class SearchView extends StatelessWidget {
           child: TextField(
             onSubmitted: (value) async {
               var weather = BlocProvider.of<GetWeatherCubit>(context);
-              weather.getWeather(value);
+              weather.getWeather(cityName: value);
               Navigator.pop(context);
             },
             decoration: InputDecoration(

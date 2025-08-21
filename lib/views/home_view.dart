@@ -14,11 +14,11 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        elevation: 0,
         toolbarHeight: 75,
         title: Text(
-          'Weather App',
-          style: TextStyle(color: Colors.white, fontSize: 27),
+          ' Weather App',
+          style: TextStyle(fontSize: 27),
         ),
         actions: [
           Padding(
@@ -30,7 +30,7 @@ class HomeView extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => SearchView()),
                 );
               },
-              icon: Icon(Icons.search, color: Colors.white, size: 30),
+              icon: Icon(Icons.search, size: 30),
             ),
           ),
         ],
@@ -43,9 +43,9 @@ class HomeView extends StatelessWidget {
             }
           else if(state is WeatherLoadedState)
             {
-              return WeatherInfoBody();
+              return WeatherInfoBody(weather: state.weatherModel,);
             }
-          else return Text("oops, there was an error ");
+          else return Center(child: Text("oops, there was an error "));
           }
         ,
       ),
